@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - WebbHacks '24</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tektur&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .form-container {
+            background-color: #3b3b3b;
+            border-radius: 8px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+        
+        input, button {
+            font-family: 'Azeret Mono', sans-serif;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #f7e84b;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid rgba(255, 232, 75, 0.8);
+            border-radius: 8px;
+            background-color: transparent;
+            color: #fff;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #f7e84b;
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            top: -15px;
+            left: 10px;
+            font-size: 12px;
+            color: #f7e84b;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            background-color: transparent;
+            border: 2px solid rgba(255, 232, 75, 0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        button:hover {
+            background-color: #f7e84b;
+            color: #2b2b2b;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #f7e84b;
+        }
+
+        footer a {
+            color: #f7e84b;
+            text-decoration: none;
+        }
+
+        .custom-select {
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid rgba(255, 232, 75, 0.8);
+    border-radius: 8px;
+    background-color: #3b3b3b;
+    color: #fff;
+}
+
+.select-dropdown {
+    display: none;
+    position: absolute;
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    z-index: 1;
+    width: 100%;
+}
+
+.select-dropdown .option {
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.select-dropdown .option:hover {
+    background-color: rgba(255, 232, 75, 0.2);
+}
+
+.active {
+    display: block; /* Show dropdown when active */
+}
+
+        
+        .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.form-row .form-group {
+    width: 48%; /* Adjust width to fit two inputs in a row */
+}
+    </style>
+</head>
+<body>
+<header>
+        <nav>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Sponsors</a></li>
+                <li><a href="#">Contact</a></li>
+                <li class="social-media">
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <br><br><br><br><h2>Register for WebbHacks '24</h2><br>
+    <small>The deadline to create an account is November 10, 2024.</small><br>
+    <div class="form-container">
+    <form id="registration-form">
+        <div class="form-row">
+            <div class="form-group">
+                <input name="fullname" type="text" id="name" required placeholder=" ">
+                <label for="name">Full Name</label>
+            </div>
+            <div class="form-group">
+                <input name="email" type="email" id="email" required placeholder=" ">
+                <label for="email">Email Address</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <input name="school" type="text" id="school" required placeholder=" ">
+                <label for="school">School Name</label>
+            </div>
+            <div class="form-group">
+    <div class="label-container">
+        <label id="size-label" for="builder">Builder Type</label>
+        <div class="custom-select" onclick="toggleDropdown(event)">
+            <div style="color:#f7e84b" id="selected-size">Builder Type</div>
+            <div class="select-dropdown" id="size-options">
+                <div class="option" onclick="selectSize('Software')">Software</div>
+                <div class="option" onclick="selectSize('Hardware')">Hardware</div>
+            </div>
+            <div style="display: none" class="form-row">
+    <div class="form-group">
+        <input name="builder" type="text" id="builder-details" placeholder=" " style="display: none;" required>
+        <label for="builder-details" id="builder-details-label" style="display: none;">Details about Builder Type</label>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <input name="pw" type="password" id="password" required placeholder=" ">
+                <label for="password">Password</label>
+            </div>
+            <div class="form-group">
+                <input name="cpw" type="password" id="confirm" required placeholder=" ">
+                <label for="confirm">Confirm Password</label>
+            </div>
+        </div>
+        <button type="submit">Create WebbHacks Account</button>
+        <br><br><p>By continuing, you agree to our <a href="/tos">Terms & Conditions</a> and confirm that you understand how we process your data as per our <a href="/privacy">Privacy Policy</a>. You must adhere to our <a href="/event-rules">Event Rules</a> at all times.</p>
+    </form>
+</div>
+
+<script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById("size-options");
+        dropdown.classList.toggle("active");
+    }
+
+    function toggleDropdown(event) {
+    event.stopPropagation(); // Prevent the click from bubbling up to the document
+    const dropdown = document.getElementById("size-options");
+    dropdown.classList.toggle("active");
+}
+
+function selectSize(size) {
+    const selected = document.getElementById("selected-size");
+    const label = document.getElementById("size-label");
+    const builderDetailsInput = document.getElementById("builder-details");
+    const builderDetailsLabel = document.getElementById("builder-details-label");
+    
+    selected.innerText = size;
+    label.classList.add('active');
+    const dropdown = document.getElementById("size-options");
+    dropdown.classList.remove("active");
+
+    // Update the placeholder based on selected size
+    builderDetailsInput.value = `${size}`;
+    console.log(builderDetailsInput.value)
+}
+
+document.addEventListener("click", function(event) {
+    const dropdown = document.getElementById("size-options");
+    const selectBox = document.querySelector(".custom-select");
+
+    // Check if the click was outside the select box and dropdown
+    if (!selectBox.contains(event.target) && dropdown.classList.contains("active")) {
+        dropdown.classList.remove("active");
+    }
+});
+
+    
+    
+</script>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="logo.png" alt="WebbHacks Logo">
+        </div>
+        <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Sponsors</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+        </div>
+        <div class="footer-newsletter">
+            <h3>Get Updates in Your Inbox</h3>
+            <form id="newsletter-form">
+                <input type="email" placeholder="Your Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="footer-info">
+            <h3>Contact Us</h3>
+            <p>info@webbhacks.com</p>
+            <p>Follow us on:</p>
+            <div class="social-media-1">
+                <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-credit">
+        <p>&copy; 2024 WebbHacks Organizers. Website built & managed by <a style="text-decoration: none" href="https://savirsingh.com"><strong>Savir Singh</strong></a>.</p>
+    </div>
+</footer>
+</body>
+</html>
+
